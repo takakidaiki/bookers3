@@ -5,6 +5,9 @@ class BooksController < ApplicationController
   end
   
   def create
+    book = Book.new(book_params)
+    book.save
+    redirect_to book_path
   end
 
   def show
@@ -16,5 +19,11 @@ class BooksController < ApplicationController
   end
   
   def update
+  end
+  
+  private
+  
+  def book_params
+    book.require(:book).permit(:title, :body)
   end
 end
